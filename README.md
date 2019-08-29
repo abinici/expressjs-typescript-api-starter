@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/abinici/expressjs-typescript-api-starter.svg?branch=master)](https://travis-ci.com/abinici/expressjs-typescript-api-starter)
+
 # Typescript and ExpressJS API Starter Project
 
 ## Description
