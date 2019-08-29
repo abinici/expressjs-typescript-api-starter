@@ -28,7 +28,7 @@ export class ApiServer {
      * Start the server
      * @returns {Promise<any>}
      */
-    public start(): Promise<any> {
+    public start(): Promise<http.Server> {
         return new Promise<any>((resolve, reject) => {
             this.server = createExpressServer({
                 controllers: controllers,
@@ -40,7 +40,7 @@ export class ApiServer {
                 }
                 // tslint:disable-next-line:no-console max-line-length
                 console.log(`Http server listening to http://${this.server.address().address}:${this.server.address().port}`);
-                return resolve();
+                return resolve(this.server);
             });
         });
 

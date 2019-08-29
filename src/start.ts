@@ -1,12 +1,9 @@
+import * as http from 'http';
 import { ApiServer } from './api.server';
 
-export const start = (): Promise<void> => {
-    return new Promise<void>((resolve, reject) => {
+export const start = (): Promise<http.Server> => {
+    return new Promise<http.Server>((resolve, reject) => {
         const apiServer = new ApiServer();
-        apiServer.start()
-                .then(resolve)
-                .catch(reject);
-
         const graceful = () => {
             apiServer.stop().then(() => {
                 // tslint:disable-next-line:no-console
@@ -18,5 +15,9 @@ export const start = (): Promise<void> => {
         // Stop graceful
         process.on('SIGTERM', graceful);
         process.on('SIGINT', graceful);
+
+        return apiServer.start()
+            .then(resolve)
+            .catch(reject);
     });
 };
